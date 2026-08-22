@@ -22,7 +22,19 @@ function getAuthHeaders() {
 }
 
 async function handleResponse<T>(res: Response): Promise<T> {
-  const data = await res.json();
+  const responseText = await res.text();
+  let data: any;
+
+  try {
+    data = responseText ? JSON.parse(responseText) : {};
+  } catch {
+    throw new Error(
+      res.ok
+        ? 'The server returned an invalid response.'
+        : `Server error (${res.status}). Please try again.`
+    );
+  }
+
   if (!res.ok) {
     throw new Error(data.error || data.message || 'Network request failed');
   }

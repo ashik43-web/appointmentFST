@@ -4,7 +4,9 @@ import initSqlJs, { Database, SqlValue } from 'sql.js';
 import bcrypt from 'bcryptjs';
 
 let dbInstance: Database | null = null;
-const DATA_DIR = path.join(process.cwd(), 'data');
+const DATA_DIR = process.env.VERCEL
+  ? path.join('/tmp', 'madanpur-hospital-data')
+  : path.join(process.cwd(), 'data');
 const DB_FILE = path.join(DATA_DIR, 'hospital.db');
 
 export interface QueryResultRow {
@@ -20,7 +22,9 @@ export async function getDb(): Promise<Database> {
     fs.mkdirSync(DATA_DIR, { recursive: true });
   }
 
-  const SQL = await initSqlJs();
+  const SQL = await initSqlJs({
+    locateFile: file => path.join(process.cwd(), 'node_modules', 'sql.js', 'dist', file)
+  });
 
   if (fs.existsSync(DB_FILE)) {
     try {
