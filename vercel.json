@@ -5,9 +5,7 @@
   "functions": {
     "api/[...path].ts": {
       "maxDuration": 30,
-      "includeFiles": [
-        "node_modules/sql.js/dist/sql-wasm.wasm"
-      ]
+      "includeFiles": "node_modules/sql.js/dist/sql-wasm.wasm"
     }
   },
   "rewrites": [
