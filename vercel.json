@@ -3,7 +3,7 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "functions": {
-    "api/index.ts": {
+    "api/[...path].ts": {
       "maxDuration": 30,
       "includeFiles": [
         "node_modules/sql.js/dist/sql-wasm.wasm"
@@ -11,7 +11,6 @@
     }
   },
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
