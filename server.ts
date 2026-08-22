@@ -19,7 +19,7 @@ import contactRoutes from './server/routes/contact.js';
 
 dotenv.config();
 
-async function startServer() {
+export async function createApp() {
   // Initialize Database
   try {
     await getDb();
@@ -29,8 +29,6 @@ async function startServer() {
   }
 
   const app = express();
-  const PORT = 3000;
-
   // Middlewares
   app.use(cors());
   app.use(express.json({ limit: '10mb' }));
@@ -72,6 +70,12 @@ async function startServer() {
     });
   }
 
+  return app;
+}
+
+async function startServer() {
+  const app = await createApp();
+  const PORT = 3000;
   app.listen(PORT, '0.0.0.0', () => {
     console.log(`====================================================`);
     console.log(`🏥 MADANPUR SPECIALIZED HOSPITAL MANAGEMENT SYSTEM`);
