@@ -1,0 +1,6 @@
+{
+  "name": "Madanpur Specialized Hospital",
+  "description": "Online hospital and doctor appointment management system for Madanpur Specialized Hospital, Narayanganj, Bangladesh with doctor directory, scheduling, patient booking, consultation tracking, and admin dashboard.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
